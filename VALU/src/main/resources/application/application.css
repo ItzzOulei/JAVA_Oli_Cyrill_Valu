@@ -1,0 +1,100 @@
+/* Root container */
+.root {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+/* fonts*/
+@font-face {
+    font-family: "Jost";
+    src: url("fonts/Jost-Regular.ttf");
+}
+
+.jost {
+    -fx-font-family: "Jost";
+    -fx-font-size: 16px; /* Beispiel für Schriftgröße */
+    -fx-font-weight: normal; /* Gewicht */
+    -fx-font-style: normal; /* Stil */
+}
+
+/* Padding for all containers */
+.pane {
+    -fx-padding: 10px;
+}
+
+/* Login Window */
+
+.login-VBox {
+    -fx-max-width: 250px;
+}
+
+.login-label {
+    -fx-text-fill: #0378A6;
+}
+
+.login-label-error{
+    -fx-text-fill: #ff3030;
+}
+
+.login-title {
+    -fx-font-size: 2em;
+    -fx-text-fill: #0378A6;
+    -fx-font-weight: 100;
+}
+
+
+
+.login-textfields{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: #b0b0b0;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.login-textfields:focused {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: #025775;
+}
+
+.logIn-button {
+    -fx-padding: 7px;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-background-color: #0378A6;
+    -fx-text-fill: white;
+    -fx-max-width: 100px;
+}
+
+.logIn-button:hover {
+    -fx-padding: 7px;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-background-color: #024d69;
+    -fx-text-fill: white;
+    -fx-max-width: 100px;
+    -fx-cursor: HAND;
+}
+
+.login-create-button {
+    -fx-padding: 7px;
+    -fx-background-color: transparent;
+    -fx-text-fill: #0378A6;
+    -fx-max-width: 100px;
+}
+
+.login-create-button:hover {
+    -fx-padding: 7px;
+    -fx-background-color: transparent;
+    -fx-text-fill: #024d69;
+    -fx-max-width: 100px;
+    -fx-cursor: HAND;
+}
+
+/* Icons Bottom color */
+.icons-bottom{
+    -fx-background-color: #0378A6;
+}

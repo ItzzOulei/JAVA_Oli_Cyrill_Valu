@@ -1,0 +1,35 @@
+/* Root container */
+.root {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+/* Padding for all containers */
+.pane {
+    -fx-padding: 10px;
+}
+
+/* Password Field */
+
+.pw-field{
+    -fx-background-color: #F2F2F2;
+    -fx-border-color: #b2b2b2;
+    -fx-max-width: 400px;
+}
+
+.icons-bottom{
+    -fx-background-color: #0378A6;
+}
+
+.welcome-title{
+    -fx-font-size: 2em;
+    -fx-text-fill: #0378A6;
+}
+
+.quote-title{
+    -fx-font-size: 1.5em;
+    -fx-text-fill: #0378A6;
+}
+
+
+
