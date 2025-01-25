@@ -2,7 +2,7 @@
 .root {
     -fx-background-radius: 0;
     -fx-border-radius: 0;
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #101214;
 }
 
 /* fonts*/
@@ -30,7 +30,7 @@
 }
 
 .login-label {
-    -fx-text-fill: #0378A6;
+    -fx-text-fill: white;
 }
 
 .login-label-error{
@@ -39,7 +39,7 @@
 
 .login-title {
     -fx-font-size: 2em;
-    -fx-text-fill: #0378A6;
+    -fx-text-fill: white;
     -fx-font-weight: 100;
 }
 
@@ -48,9 +48,11 @@
 .login-textfields{
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-border-color: #b0b0b0;
+    -fx-border-color: #22272B;
+    -fx-background-color: #2C333A;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
+    -fx-text-fill: white;
 }
 
 .login-textfields:focused {
@@ -58,14 +60,16 @@
     -fx-border-radius: 10;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-border-color: #025775;
+    -fx-border-color: #1D2125;
+    -fx-background-color: #38414A;
+    -fx-text-fill: white;
 }
 
 .logIn-button {
     -fx-padding: 7px;
     -fx-border-radius: 15;
     -fx-background-radius: 15;
-    -fx-background-color: #0378A6;
+    -fx-background-color:#22272B;
     -fx-text-fill: white;
     -fx-max-width: 100px;
 }
@@ -74,7 +78,7 @@
     -fx-padding: 7px;
     -fx-border-radius: 15;
     -fx-background-radius: 15;
-    -fx-background-color: #024d69;
+    -fx-background-color: #1D2125;
     -fx-text-fill: white;
     -fx-max-width: 100px;
     -fx-cursor: HAND;
@@ -83,28 +87,28 @@
 .login-create-button {
     -fx-padding: 7px;
     -fx-background-color: transparent;
-    -fx-text-fill: #0378A6;
+    -fx-text-fill: #22272B;
     -fx-max-width: 100px;
 }
 
 .login-create-button:hover {
     -fx-padding: 7px;
     -fx-background-color: transparent;
-    -fx-text-fill: #024d69;
+    -fx-text-fill:#2C333A;
     -fx-max-width: 100px;
     -fx-cursor: HAND;
 }
 
 /* Icons Bottom color */
 .icons-bottom{
-    -fx-background-color: #0378A6;
+    -fx-background-color: #22272B;
 }
 
 .btn-theme {
     -fx-padding: 7px;
     -fx-border-radius: 15;
     -fx-background-radius: 15;
-    -fx-background-color: #0378A6;
+    -fx-background-color: #22272B;
     -fx-text-fill: white;
     -fx-max-width: 100px;
 }
@@ -113,7 +117,7 @@
     -fx-padding: 7px;
     -fx-border-radius: 15;
     -fx-background-radius: 15;
-    -fx-background-color: #024d69;
+    -fx-background-color:#2C333A;
     -fx-text-fill: white;
     -fx-max-width: 100px;
     -fx-cursor: HAND;}

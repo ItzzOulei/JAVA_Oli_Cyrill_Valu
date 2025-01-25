@@ -48,8 +48,8 @@ public class AddPassword extends Application {
         hboxBottom1.setPadding(new Insets(10, 10, 10, 10));
 
         // Add Icons
-        Image imageHomeOffL = new Image(Objects.requireNonNull(getClass().getResource("/images/homeOff.png")).toExternalForm());
-        ImageView imageHomeOffV = new ImageView(imageHomeOffL);
+        Image imageHomeOnL = new Image(Objects.requireNonNull(getClass().getResource("/images/homeOff.png")).toExternalForm());
+        ImageView imageHomeOffV = new ImageView(imageHomeOnL);
         imageHomeOffV.setFitHeight(25);
         imageHomeOffV.setFitWidth(25);
         hboxBottom1.getChildren().add(imageHomeOffV);
@@ -60,11 +60,17 @@ public class AddPassword extends Application {
         imageKeyOffV.setFitWidth(25);
         hboxBottom1.getChildren().add(imageKeyOffV);
 
-        Image imageAddOnL = new Image(Objects.requireNonNull(getClass().getResource("/images/addOn.png")).toExternalForm());
-        ImageView imageAddOnV = new ImageView(imageAddOnL);
-        imageAddOnV.setFitHeight(25);
-        imageAddOnV.setFitWidth(25);
-        hboxBottom1.getChildren().add(imageAddOnV);
+        Image imageAddOffL = new Image(Objects.requireNonNull(getClass().getResource("/images/addOn.png")).toExternalForm());
+        ImageView imageAddOffV = new ImageView(imageAddOffL);
+        imageAddOffV.setFitHeight(25);
+        imageAddOffV.setFitWidth(25);
+        hboxBottom1.getChildren().add(imageAddOffV);
+
+        Image imageSettingsOffL = new Image(Objects.requireNonNull(getClass().getResource("/images/settingsOff.png")).toExternalForm());
+        ImageView imageSettingsOffV = new ImageView(imageSettingsOffL);
+        imageSettingsOffV.setFitHeight(25);
+        imageSettingsOffV.setFitWidth(25);
+        hboxBottom1.getChildren().add(imageSettingsOffV);
 
         // Add Pane for bigger Hitbox
         StackPane homeIconContainer = new StackPane();
@@ -79,10 +85,17 @@ public class AddPassword extends Application {
         keyIconContainer.getChildren().add(imageKeyOffV);
         hboxBottom1.getChildren().add(keyIconContainer);
 
+        StackPane addIconContainer = new StackPane();
+        addIconContainer.setPrefSize(50, 50);
+        addIconContainer.setAlignment(Pos.CENTER);
+        addIconContainer.getChildren().add(imageAddOffV);
+        addIconContainer.getChildren().add(imageSettingsOffV);
+        hboxBottom1.getChildren().add(addIconContainer);
+
         StackPane settingsIconContainer = new StackPane();
         settingsIconContainer.setPrefSize(50, 50);
         settingsIconContainer.setAlignment(Pos.CENTER);
-        settingsIconContainer.getChildren().add(imageAddOnV);
+        settingsIconContainer.getChildren().add(imageSettingsOffV);
         hboxBottom1.getChildren().add(settingsIconContainer);
 
         HBox hboxCenterStatus = new HBox();
@@ -150,11 +163,15 @@ public class AddPassword extends Application {
             passwordScreen.start(primaryStage);
         });
 
-        settingsIconContainer.setOnMouseClicked(event -> {
-            AddPassword settingsScreen = new AddPassword();
-            settingsScreen.start(primaryStage);
+        addIconContainer.setOnMouseClicked(event -> {
+            AddPassword addPassword = new AddPassword();
+            addPassword.start(primaryStage);
         });
 
+        settingsIconContainer.setOnMouseClicked(event -> {
+            Settings settingsScreen = new Settings();
+            settingsScreen.start(primaryStage);
+        });
 
         // Big Title for Add Password scene
         Label labelCreatUser = new Label("Add Password");
@@ -221,8 +238,11 @@ public class AddPassword extends Application {
         });
 
         Scene scene = new Scene(rootAddPassword, 400, 500);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/application.css")).toExternalForm());
-
+        if (Settings.isDarkMode()) {
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/application-dark.css")).toExternalForm());
+        } else {
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/application.css")).toExternalForm());
+        }
         // Load the app icon and set it to the window's title bar
         Image appIcon = new Image(Objects.requireNonNull(getClass().getResource("/images/logo.png")).toExternalForm());
         primaryStage.getIcons().add(appIcon);

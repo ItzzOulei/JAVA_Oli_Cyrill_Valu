@@ -65,17 +65,23 @@ public class PasswordScreen extends Application {
         imageHomeOffV.setFitWidth(25);
         hboxBottom1.getChildren().add(imageHomeOffV);
 
-        Image imageKeyOnL = new Image(Objects.requireNonNull(getClass().getResource("/images/keyOn.png")).toExternalForm());
-        ImageView imageKeyOnV = new ImageView(imageKeyOnL);
-        imageKeyOnV.setFitHeight(25);
-        imageKeyOnV.setFitWidth(25);
-        hboxBottom1.getChildren().add(imageKeyOnV);
+        Image imageKeyOffL = new Image(Objects.requireNonNull(getClass().getResource("/images/keyOn.png")).toExternalForm());
+        ImageView imageKeyOffV = new ImageView(imageKeyOffL);
+        imageKeyOffV.setFitHeight(25);
+        imageKeyOffV.setFitWidth(25);
+        hboxBottom1.getChildren().add(imageKeyOffV);
 
         Image imageAddOffL = new Image(Objects.requireNonNull(getClass().getResource("/images/addOff.png")).toExternalForm());
         ImageView imageAddOffV = new ImageView(imageAddOffL);
         imageAddOffV.setFitHeight(25);
         imageAddOffV.setFitWidth(25);
         hboxBottom1.getChildren().add(imageAddOffV);
+
+        Image imageSettingsOffL = new Image(Objects.requireNonNull(getClass().getResource("/images/settingsOff.png")).toExternalForm());
+        ImageView imageSettingsOffV = new ImageView(imageSettingsOffL);
+        imageSettingsOffV.setFitHeight(25);
+        imageSettingsOffV.setFitWidth(25);
+        hboxBottom1.getChildren().add(imageSettingsOffV);
 
         // Add Pane for bigger Hitbox
         StackPane homeIconContainer = new StackPane();
@@ -87,18 +93,28 @@ public class PasswordScreen extends Application {
         StackPane keyIconContainer = new StackPane();
         keyIconContainer.setPrefSize(50, 50);
         keyIconContainer.setAlignment(Pos.CENTER);
-        keyIconContainer.getChildren().add(imageKeyOnV);
+        keyIconContainer.getChildren().add(imageKeyOffV);
         hboxBottom1.getChildren().add(keyIconContainer);
+
+        StackPane addIconContainer = new StackPane();
+        addIconContainer.setPrefSize(50, 50);
+        addIconContainer.setAlignment(Pos.CENTER);
+        addIconContainer.getChildren().add(imageAddOffV);
+        addIconContainer.getChildren().add(imageSettingsOffV);
+        hboxBottom1.getChildren().add(addIconContainer);
 
         StackPane settingsIconContainer = new StackPane();
         settingsIconContainer.setPrefSize(50, 50);
         settingsIconContainer.setAlignment(Pos.CENTER);
-        settingsIconContainer.getChildren().add(imageAddOffV);
+        settingsIconContainer.getChildren().add(imageSettingsOffV);
         hboxBottom1.getChildren().add(settingsIconContainer);
 
         Scene sceneHome = new Scene(rootPassword, 400, 500);
-        sceneHome.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/applicationHome.css")).toExternalForm());
-
+        if (Settings.isDarkMode()) {
+            sceneHome.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/application-dark.css")).toExternalForm());
+        } else {
+            sceneHome.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/application.css")).toExternalForm());
+        }
         // Load the app icon and set it to the window's title bar
         Image appIcon = new Image(Objects.requireNonNull(getClass().getResource("/images/logo.png")).toExternalForm());
         primaryStage.getIcons().add(appIcon);
@@ -113,8 +129,13 @@ public class PasswordScreen extends Application {
             passwordScreen.start(primaryStage);
         });
 
+        addIconContainer.setOnMouseClicked(event -> {
+            AddPassword addPassword = new AddPassword();
+            addPassword.start(primaryStage);
+        });
+
         settingsIconContainer.setOnMouseClicked(event -> {
-            AddPassword settingsScreen = new AddPassword();
+            Settings settingsScreen = new Settings();
             settingsScreen.start(primaryStage);
         });
 

@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,10 +15,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import javafx.scene.paint.Color;
+import java.awt.*;
 import java.util.Objects;
 
-public class HomeScreen extends Application {
+public class Settings extends Application {
+
+    public static boolean darkMode = false;
 
     // creates the GUI scene for the Home Screen and welcomes the user
     @Override
@@ -52,49 +56,12 @@ public class HomeScreen extends Application {
         hboxBottom1.setSpacing(40);
         hboxBottom1.setPadding(new Insets(10, 10, 10, 10));
 
-        // Welcome Title
-        String username = UserJDBCDao.getUsername(Login.getCurrentUserUUID());
-        if (username != null) {
-            username = username.toUpperCase();
-            Label lbWelcome = new Label("WELCOME BACK " + username + "!");
-            hboxTop1.getChildren().add(lbWelcome);
-            lbWelcome.getStyleClass().add("welcome-title");
-        } else {
-            Label lbWelcome = new Label("NO USER FOUND");
-            hboxTop1.getChildren().add(lbWelcome);
-            lbWelcome.getStyleClass().add("welcome-title");
-        }
-
-
-        //Quotes
-        String[] quotesList = {
-                "\"Curry up and eat\"\n" +
-                "-Arvin Nathan-",
-                "\"Take a deep look in the mirror\"\n" +
-                "-Huu Vinh Lee-",
-                "\"Shut ze fuck up\"\n" +
-                "-Nils Schädeli-","\n" +
-                "\"Skadoosh.\"\n" +
-                "-Flavio Argentati-" ,
-                "“ABSOULTE CINEMA“\n" +
-                        "-Oli-"};
-        String quote = quotesList[(int) (Math.random() * quotesList.length)];
-        Label lbQuote = new Label(quote);
-        vboxCenter1.getChildren().add(hboxCenter1);
-        hboxCenter1.getChildren().add(lbQuote);
-        lbQuote.getStyleClass().add("quote-title");
-        lbQuote.setWrapText(true);
-        lbQuote.setAlignment(Pos.CENTER);
-        lbQuote.setAlignment(javafx.geometry.Pos.CENTER);
-        lbQuote.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        hboxCenter1.setAlignment(Pos.CENTER);
-        hboxCenter1.setAlignment(javafx.geometry.Pos.CENTER);
-        hboxCenter1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        hboxCenter1.setPadding(new Insets(10, 10, 10, 10));
-
+        Button btnDarkMode = new Button("Dark Mode");
+        btnDarkMode.getStyleClass().add("btn-theme");
+        vboxCenter1.getChildren().add(btnDarkMode);
 
         // Add Icons
-        Image imageHomeOnL = new Image(Objects.requireNonNull(getClass().getResource("/images/homeOn.png")).toExternalForm());
+        Image imageHomeOnL = new Image(Objects.requireNonNull(getClass().getResource("/images/homeOff.png")).toExternalForm());
         ImageView imageHomeOffV = new ImageView(imageHomeOnL);
         imageHomeOffV.setFitHeight(25);
         imageHomeOffV.setFitWidth(25);
@@ -112,7 +79,7 @@ public class HomeScreen extends Application {
         imageAddOffV.setFitWidth(25);
         hboxBottom1.getChildren().add(imageAddOffV);
 
-        Image imageSettingsOffL = new Image(Objects.requireNonNull(getClass().getResource("/images/settingsOff.png")).toExternalForm());
+        Image imageSettingsOffL = new Image(Objects.requireNonNull(getClass().getResource("/images/settingsOn.png")).toExternalForm());
         ImageView imageSettingsOffV = new ImageView(imageSettingsOffL);
         imageSettingsOffV.setFitHeight(25);
         imageSettingsOffV.setFitWidth(25);
@@ -145,11 +112,12 @@ public class HomeScreen extends Application {
         hboxBottom1.getChildren().add(settingsIconContainer);
 
         Scene scene = new Scene(rootHome, 400, 500);
-        if (Settings.isDarkMode()) {
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/applicationHome-dark.css")).toExternalForm());
+        if (isDarkMode()) {
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/application-dark.css")).toExternalForm());
         } else {
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/applicationHome.css")).toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application/application.css")).toExternalForm());
         }
+
         // Load the app icon and set it to the window's title bar
         Image appIcon = new Image(Objects.requireNonNull(getClass().getResource("/images/logo.png")).toExternalForm());
         primaryStage.getIcons().add(appIcon);
@@ -174,6 +142,21 @@ public class HomeScreen extends Application {
             settingsScreen.start(primaryStage);
         });
 
+        btnDarkMode.setOnAction(event -> {
+            if (darkMode) {
+                darkMode = false;
+                btnDarkMode.setText("Dark Mode");
+                Settings settingsScreen = new Settings();
+                settingsScreen.start(primaryStage);
+            } else {
+                darkMode = true;
+                btnDarkMode.setText("Light Mode");
+                Settings settingsScreen = new Settings();
+                settingsScreen.start(primaryStage);
+            }
+
+        });
+
         // Set up the stage
         primaryStage.setScene(scene);
         primaryStage.setTitle("VALU");
@@ -183,4 +166,14 @@ public class HomeScreen extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
+    public static boolean isDarkMode() {
+        return darkMode;
+    }
+
+    public static void setDarkMode(boolean darkMode) {
+        Settings.darkMode = darkMode;
+    }
 }
+

@@ -132,22 +132,24 @@ public abstract class UserJDBCDao implements UserDao {
     // Methods for Password by UUID
     public static String getUsername(String UUID){
 
-        // SQL Query to get UUID
-        String getUsernameSQL = "SELECT username FROM user WHERE userUID = ?";
+        if(UUID !=null){
+            // SQL Query to get UUID
+            String getUsernameSQL = "SELECT username FROM user WHERE userUID = ?";
 
-        try (Connection con = ConnectionFactory.getConnection();
-             PreparedStatement checkStmt = con.prepareStatement(getUsernameSQL)) {
+            try (Connection con = ConnectionFactory.getConnection();
+                 PreparedStatement checkStmt = con.prepareStatement(getUsernameSQL)) {
 
-            checkStmt.setString(1, UUID);
+                checkStmt.setString(1, UUID);
 
-            try (var resultSet = checkStmt.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getString("username");
+                try (var resultSet = checkStmt.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getString("username");
+                    }
                 }
-            }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }

@@ -23,7 +23,7 @@ public class ConnectionFactory {
     public static ConnectionFactory getInstance() {
         if (connectionFactory == null) {
 
-            connectionFactory = new ConnectionFactory("jdbc:mysql://172.16.2.168:3306/valu", "cyrill", "valu$3512");
+            connectionFactory = new ConnectionFactory("jdbc:mysql://localhost/valu", "cyrill", "valu$3512");
         }
         return connectionFactory;
     }
